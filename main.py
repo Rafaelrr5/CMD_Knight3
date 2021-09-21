@@ -139,7 +139,8 @@ while(escolha != 1) or (escolha != 4):
     os.system("cls")
     
 os.system("cls")
-    
+
+print("A história começa...")
 print("""                           (   ))
                           (    ))
                            (    ))
@@ -159,3 +160,7 @@ print("""                           (   ))
                I_II  I__I_____[]_|_[]_____I
                I II__I  I     XXXXXXX     I
             ~~~~~"   "~~~~~~~~~~~~~~~~~~~~~~~~""")
+time.sleep(1)
+
+print("Clóvis: ᴍᴇᴜ ᴅᴇᴜs ᴄʀɪᴀ ᴇᴜ ʙᴇʙɪ ᴛᴀɴᴛᴏ ǫᴜᴇ ᴇᴜ ɴᴇᴍ ʟᴇᴍʙʀᴏ ᴏ sᴇᴜ ɴᴏᴍᴇ, ᴀᴊᴜᴅᴀ ᴀɪ́...")
+user.nome = input()
