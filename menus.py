@@ -31,5 +31,15 @@ class MenusIni:
     4 - Sair do jogo <-
             """)
         
+    def menuclas1():
+        print("""
+              1 - Guerreiro <-
+              2 - Arqueiro""")
+    
+    def menuclas2():
+        print("""
+              1 - Guerreiro 
+              2 - Arqueiro <-""")
+        
 class a:
     pass
