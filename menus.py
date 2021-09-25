@@ -41,5 +41,15 @@ class MenusIni:
               1 - Guerreiro 
               2 - Arqueiro <-""")
         
+    def menucvs1():
+        print("""
+            1 - Isso aí, Clóvis <-
+            2 - Não, cara... kk""")
+        
+    def menucvs2():
+        print("""
+            1 - Isso aí, Clóvis 
+            2 - Não, cara... kk <-""")
+        
 class a:
     pass

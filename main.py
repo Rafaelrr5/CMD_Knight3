@@ -5,10 +5,21 @@ import pygame
 import pyautogui
 import keyboard
 import os
-import User, Classes, Armas, Menus
+import User, Armas, Menus
+
+def musiquinha(musica):
+    if musica:
+        musica = False
+        pygame.mixer.music.pause()
+        return
+    
+    if not musica:
+        musica = True
+        pygame.mixer.music.unpause()
+        return
 
 def tempo():
-    time.sleep(0.2)
+    time.sleep(0) #0.2
     
 def opcoesmenu(escolha, opcao):
     a = keyboard.read_key()
@@ -22,9 +33,17 @@ def opcoesmenu(escolha, opcao):
         
     elif a == "enter":
         escolha = opcao
+        time.sleep(0.1)
         
+    os.system("cls")
     return opcao, escolha
-    
+
+def voltarmenu():
+    opcao, escolha = opcoesmenu(0,0)
+    return escolha
+
+def userarq():
+    pass
 # pygame.mixer.music.stop pygame.mixer.music.pause pygame.mixer.music.unpause
 
 pygame.init()
@@ -35,8 +54,11 @@ pygame.mixer.music.set_volume(volume)
 escolha = 0
 opcao = 1
 menuInicial = Menus.MenusIni
+user = User.user
+musica = True
+a = keyboard.read_key()
 
-loadbarwidth =  23#23
+loadbarwidth =  10 #23
 
 for i in range(1, loadbarwidth + 1):
     time.sleep(0.1) 
@@ -128,8 +150,9 @@ while(escolha != 1) or (escolha != 4):
         break
         
     elif escolha == 2:
-        pygame.mixer.music.set_volume(int(input(f"Digite o valor do volume que você deseja || Atual: {volume}")))
-        escolha = 0
+        input()
+        musiquinha(musica)
+        voltarmenu()
         
     elif escolha == 3:
         print("""_________         _________ 
@@ -144,14 +167,13 @@ while(escolha != 1) or (escolha != 4):
               |         ~~~~~~~~~         ~~~~~~~~                                     
               ^""")
         input("Pressione enter para volar ao menu")
-        escolha = 0
+
+        voltarmenu()
         
     if escolha == 4:
         exit()
     
     inicio=1
-    os.system("cls")
-    
 os.system("cls")
 
 print("A história começa...")
@@ -178,11 +200,11 @@ time.sleep(1)
 
 #https://pt.piliapp.com/cool-text/small-caps/
 print("Clóvis: ᴍᴇᴜ ᴅᴇᴜs ᴄʀɪᴀ ᴇᴜ ʙᴇʙɪ ᴛᴀɴᴛᴏ ǫᴜᴇ ᴇᴜ ɴᴇᴍ ʟᴇᴍʙʀᴏ ᴏ sᴇᴜ ɴᴏᴍᴇ, ᴀᴊᴜᴅᴀ ᴀɪ́...")
-User.nome = input("Digite seu nome: ") 
-User.nome = input()
-while((escolha != 1) or (escolha!=2)):
+user.nome= input("Digite seu nome: ") 
+user.nome = input()
+while((escolha != 1) or (escolha!=2)): 
     
-    print(f"Clóvis: Isso aí memo, {User.nome} ᴇ ᴠᴏᴄᴇ̂ ᴇ́...?")
+    print(f"Clóvis: Isso aí memo, {user.nome} ᴇ ᴠᴏᴄᴇ̂ ᴇ́...?")
     if opcao == 1:
         menuInicial.menuclas1()
         
@@ -198,7 +220,33 @@ while((escolha != 1) or (escolha!=2)):
         menuInicial.menuclas2()
     
     opcao, escolha = opcoesmenu(escolha, opcao)
-    
-    os.system("cls")
 
-print("ᴘᴏᴅᴇ ᴄʀᴇʀ, ᴛᴏ ᴍᴇ ʟᴇᴍʙʀᴀɴᴅᴏ... ᴠᴀᴍᴏ ɴᴇssᴀ, ᴊᴀ́ ᴛᴏ ʀᴜɪᴍ ᴊᴀ́")
+    if escolha == 1:
+        user.criacao(1,100,25,25,80,Armas.Espada.Espada(2,1))
+        
+    elif escolha == 2:
+        user.criacao(2,80,40,10,100,Armas.Arco.Arco(2,1))
+
+escolha = 0
+while(escolha!= 1 or escolha!= 2):
+
+    if user.classe == 1:
+        print(f"Clóvis: ᴘᴏᴅᴇ ᴄʀᴇʀ, ᴛᴏ ᴍᴇ ʟᴇᴍʙʀᴀɴᴅᴏ... sᴇ ᴇᴜ ɴᴀ̃ᴏ ᴍᴇ ᴇɴɢᴀɴᴏ sᴜᴀ ᴇsᴘᴀᴅᴀ ᴇʀᴀ ᴀ ᴄᴏᴍ {user.danoArma} ᴅᴇ ᴅᴀɴᴏ ᴇ {user.speedArma} ᴅᴇ ᴠᴇʟᴏᴄɪᴅᴀᴅᴇ ᴅᴇ ᴀᴛᴀǫᴜᴇ ɴᴇ́?")
+        
+    elif user.classe == 2:
+        print(f"Clóvis: ᴘᴏᴅᴇ ᴄʀᴇʀ, ᴛᴏ ᴍᴇ ʟᴇᴍʙʀᴀɴᴅᴏ... sᴇ ᴇᴜ ɴᴀ̃ᴏ ᴍᴇ ᴇɴɢᴀɴᴏ sᴇᴜ ᴀʀᴄᴏ ᴇʀᴀ ᴏ ᴄᴏᴍ {user.danoArma} ᴅᴇ ᴅᴀɴᴏ ᴇ {user.speedArma} ᴅᴇ ᴠᴇʟᴏᴄɪᴅᴀᴅᴇ ᴅᴇ ᴀᴛᴀǫᴜᴇ ɴᴇ́?")
+
+    menuInicial.menucvs1()
+    menuInicial.menucvs2()
+    opcao, escolha = opcoesmenu(escolha, opcao)
+
+    if escolha == 1:
+        print("ʙᴇʟᴇᴢᴀ ᴇɴᴛᴀ̃ᴏ")
+    
+    if escolha == 2:
+        print("ɴᴀ̃ᴏ ᴢᴏᴀ ɴᴀ̃ᴏ ᴄᴀʀᴀ")
+
+print("...")
+time.sleep(2)
+print("Clóvis: ᴠᴀᴍᴏ ɴᴇssᴀ, ᴊᴀ́ ᴛᴏ ʀᴜɪᴍ ᴊᴀ́")
+    
