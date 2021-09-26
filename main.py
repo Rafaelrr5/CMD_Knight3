@@ -7,6 +7,7 @@ import keyboard
 import os
 import User, Armas, Menus
 
+
 def musiquinha(musica):
     if musica:
         musica = False
@@ -39,15 +40,16 @@ def opcoesmenu(escolha, opcao):
     return opcao, escolha
 
 def voltarmenu():
-    opcao, escolha = opcoesmenu(0,0)
-    return escolha
+    opcao, escolha = opcoesmenu(0,1)
+    return opcao, escolha
 
 def userarq():
     pass
 # pygame.mixer.music.stop pygame.mixer.music.pause pygame.mixer.music.unpause
 
 pygame.init()
-pygame.mixer.music.load('musica.wav')
+path = os.path.join(os.path.dirname(__file__), 'musica.wav')
+pygame.mixer.music.load(path)
 pygame.event.wait()
 volume = 0.8
 pygame.mixer.music.set_volume(volume)
@@ -56,17 +58,16 @@ opcao = 1
 menuInicial = Menus.MenusIni
 user = User.user
 musica = True
-a = keyboard.read_key()
 
-loadbarwidth =  10 #23
+carregamento =  10 #23
 
-for i in range(1, loadbarwidth + 1):
+for i in range(1, carregamento + 1):
     time.sleep(0.1) 
 
     strbarwidth = '[{}{}] - {}\r'.format(
         (i * '#'),
-        ((loadbarwidth - i) * '-'),
-        (('{:0.2f}'.format(((i) * (100/loadbarwidth))) + '%'))
+        ((carregamento - i) * '-'),
+        (('{:0.2f}'.format(((i) * (100/carregamento))) + '%'))
     )
 
     print(strbarwidth ,end = '')
@@ -137,12 +138,12 @@ while(escolha != 1) or (escolha != 4):
         menuInicial.menu4()
     
     if opcao == 0:
-        opcao = 1
-        menuInicial.menu1()
-        
-    if opcao == 5:
         opcao = 4
         menuInicial.menu4()
+        
+    if opcao == 5:
+        opcao = 1
+        menuInicial.menu1()
 
     opcao, escolha = opcoesmenu(escolha, opcao)
     
@@ -152,7 +153,7 @@ while(escolha != 1) or (escolha != 4):
     elif escolha == 2:
         input()
         musiquinha(musica)
-        voltarmenu()
+        opcao, escolha = voltarmenu()
         
     elif escolha == 3:
         print("""_________         _________ 
@@ -167,8 +168,7 @@ while(escolha != 1) or (escolha != 4):
               |         ~~~~~~~~~         ~~~~~~~~                                     
               ^""")
         input("Pressione enter para volar ao menu")
-
-        voltarmenu()
+        opcao, escolha = voltarmenu()
         
     if escolha == 4:
         exit()
