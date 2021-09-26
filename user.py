@@ -1,4 +1,4 @@
-from Armas import Espada, Arco
+import Armas
 
 class user:
     nome = ""
@@ -10,7 +10,7 @@ class user:
 
     
     def criacao(self, classe, vida, atk , defesa, energia, ArmaInicial):
-         self. classe = classe
+         self.classe = classe
          self.vida = vida
          self.atk = atk
          self.defesa = defesa

@@ -12,12 +12,12 @@ def musiquinha(musica):
     if musica:
         musica = False
         pygame.mixer.music.pause()
-        return
+        return musica
     
     if not musica:
         musica = True
         pygame.mixer.music.unpause()
-        return
+        return musica
 
 def tempo():
     time.sleep(0) #0.2
@@ -32,15 +32,15 @@ def opcoesmenu(escolha, opcao):
         opcao-=1
         time.sleep(0.1)    
         
-    elif a == "enter":
+    elif a == "space":
         escolha = opcao
         time.sleep(0.1)
         
     os.system("cls")
     return opcao, escolha
 
-def voltarmenu():
-    opcao, escolha = opcoesmenu(0,1)
+def voltarmenu(escolha, opcao):
+    opcao, escolha = opcoesmenu(escolha, opcao)
     return opcao, escolha
 
 def userarq():
@@ -109,7 +109,7 @@ if inicio == 0:
     print("    /        `.  / /       `.~-^=-=~=^=.-'      '-._ `._""")
     tempo()
     
-
+    print("Para manipular o menu, utilize as setinhas e a tecla espaço do seu teclado")
 while(escolha != 1) or (escolha != 4):
     if inicio != 0:
         print("""
@@ -151,9 +151,9 @@ while(escolha != 1) or (escolha != 4):
         break
         
     elif escolha == 2:
-        input()
-        musiquinha(musica)
-        opcao, escolha = voltarmenu()
+        input("Aperte enter")
+        musica = musiquinha(musica)
+        opcao, escolha = voltarmenu(0,2)
         
     elif escolha == 3:
         print("""_________         _________ 
@@ -167,8 +167,8 @@ while(escolha != 1) or (escolha != 4):
              \\__/      \\         /       \\        /                                 
               |         ~~~~~~~~~         ~~~~~~~~                                     
               ^""")
-        input("Pressione enter para volar ao menu")
-        opcao, escolha = voltarmenu()
+        input("Pressione enter para voltar ao menu")
+        opcao, escolha = voltarmenu(0,3)
         
     if escolha == 4:
         exit()
