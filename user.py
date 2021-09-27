@@ -1,9 +1,10 @@
 from Armas import Arco,Espada
 
 class user:
-    
-    def __init__(self, classe, vida, atk , defesa, energia, ArmaInicial):
+            
+    def __init__(self, nome, classe, vida, atk , defesa, energia, ArmaInicial):
         ArmaInicial = Espada(2,1)
+        self.nome = nome
         self.classe = classe
         self.vida = vida
         self.atk = atk
@@ -18,3 +19,13 @@ class user:
         self.danoArma = ArmaInicial.dano
         self.speedArma = ArmaInicial.speed
 
+    @property
+    def nome(self):
+        """I'm the 'x' property."""
+        print("getter of x called")
+        return self._nome
+
+    @nome.setter
+    def nome(self, nome):
+        print("setter of x called")
+        self._nome = nome
