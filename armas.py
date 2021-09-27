@@ -1,16 +1,12 @@
 class Espada:
-    
-    danoesp = speedesp = 0
-    
-    def Espada(self,danoesp,speedesp):
-        self.danoesp = danoesp
-        self.speedesp = speedesp
+
+    def __init__(self,dano,speed):
+        self.dano = dano
+        self.speed = speed
         
 
 class Arco:
     
-    danoarq = speedarq = 0
-    
-    def Arco(self,danoarq,speedarq):
-        self.danoarq = danoarq
-        self.speedarq = speedarq
+    def __init__(self,dano,speed):
+        self.dano = dano
+        self.speed = speed

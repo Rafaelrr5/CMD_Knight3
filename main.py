@@ -6,7 +6,7 @@ import pyautogui
 import keyboard
 import os
 import User, Armas, Menus
-
+from Armas import Arco,Espada
 
 def musiquinha(musica):
     if musica:
@@ -56,7 +56,7 @@ pygame.mixer.music.set_volume(volume)
 escolha = 0
 opcao = 1
 menuInicial = Menus.MenusIni
-user = User.user
+user = User.user ;
 musica = True
 
 carregamento =  10 #23
@@ -73,7 +73,6 @@ for i in range(1, carregamento + 1):
     print(strbarwidth ,end = '')
 pygame.mixer.music.play()
 
-print()
 inicio = 0
 if inicio == 0:
     print("Bem vindo, jovem cavaleiro, ao...")
@@ -200,9 +199,10 @@ time.sleep(1)
 
 #https://pt.piliapp.com/cool-text/small-caps/
 print("Clóvis: ᴍᴇᴜ ᴅᴇᴜs ᴄʀɪᴀ ᴇᴜ ʙᴇʙɪ ᴛᴀɴᴛᴏ ǫᴜᴇ ᴇᴜ ɴᴇᴍ ʟᴇᴍʙʀᴏ ᴏ sᴇᴜ ɴᴏᴍᴇ, ᴀᴊᴜᴅᴀ ᴀɪ́...")
-user.nome= input("Digite seu nome: ") 
-user.nome = input()
-while((escolha != 1) or (escolha!=2)): 
+user.nome = input("Digite seu nome: ") 
+user.nome = input("*Nome confirmado* Pressione enter para continuar")
+escolha = 0
+while((escolha == 0)): 
     
     print(f"Clóvis: Isso aí memo, {user.nome} ᴇ ᴠᴏᴄᴇ̂ ᴇ́...?")
     if opcao == 1:
@@ -212,39 +212,67 @@ while((escolha != 1) or (escolha!=2)):
         menuInicial.menuclas2()
     
     if opcao < 1:
-        opcao = 1
+        opcao = 2
         menuInicial.menuclas1()
         
     if opcao > 2:
-        opcao = 2
+        opcao = 1
         menuInicial.menuclas2()
     
     opcao, escolha = opcoesmenu(escolha, opcao)
 
-    if escolha == 1:
-        user.criacao(1,100,25,25,80,Armas.Espada.Espada(2,1))
+if escolha == 1:
+    user(1,100,25,25,80,Espada(2,1))
         
-    elif escolha == 2:
-        user.criacao(2,80,40,10,100,Armas.Arco.Arco(2,1))
-
+elif escolha == 2:
+    user(2,80,40,10,100,Arco(2,1))
+ 
 escolha = 0
-while(escolha!= 1 or escolha!= 2):
+while(escolha==0): 
 
     if user.classe == 1:
         print(f"Clóvis: ᴘᴏᴅᴇ ᴄʀᴇʀ, ᴛᴏ ᴍᴇ ʟᴇᴍʙʀᴀɴᴅᴏ... sᴇ ᴇᴜ ɴᴀ̃ᴏ ᴍᴇ ᴇɴɢᴀɴᴏ sᴜᴀ ᴇsᴘᴀᴅᴀ ᴇʀᴀ ᴀ ᴄᴏᴍ {user.danoArma} ᴅᴇ ᴅᴀɴᴏ ᴇ {user.speedArma} ᴅᴇ ᴠᴇʟᴏᴄɪᴅᴀᴅᴇ ᴅᴇ ᴀᴛᴀǫᴜᴇ ɴᴇ́?")
         
+        if opcao == 1:
+            menuInicial.menucvs1()
+        
+        elif opcao == 2:
+            menuInicial.menucvs2()
+        
+        if opcao < 1:
+            opcao = 2
+            menuInicial.menucvs1()
+        
+        if opcao > 2:
+            opcao = 1
+            menuInicial.menucvs2()
+        
+        opcao, escolha = opcoesmenu(escolha, opcao)
+        
     elif user.classe == 2:
         print(f"Clóvis: ᴘᴏᴅᴇ ᴄʀᴇʀ, ᴛᴏ ᴍᴇ ʟᴇᴍʙʀᴀɴᴅᴏ... sᴇ ᴇᴜ ɴᴀ̃ᴏ ᴍᴇ ᴇɴɢᴀɴᴏ sᴇᴜ ᴀʀᴄᴏ ᴇʀᴀ ᴏ ᴄᴏᴍ {user.danoArma} ᴅᴇ ᴅᴀɴᴏ ᴇ {user.speedArma} ᴅᴇ ᴠᴇʟᴏᴄɪᴅᴀᴅᴇ ᴅᴇ ᴀᴛᴀǫᴜᴇ ɴᴇ́?")
 
-    menuInicial.menucvs1()
-    menuInicial.menucvs2()
-    opcao, escolha = opcoesmenu(escolha, opcao)
+        if opcao == 1:
+            menuInicial.menucvs1()
+        
+        elif opcao == 2:
+            menuInicial.menucvs2()
+        
+        if opcao < 1:
+            opcao = 2
+            menuInicial.menucvs1()
+        
+        if opcao > 2:
+            opcao = 1
+            menuInicial.menucvs2()
+        
+        opcao, escolha = opcoesmenu(escolha, opcao)
 
-    if escolha == 1:
-        print("ʙᴇʟᴇᴢᴀ ᴇɴᴛᴀ̃ᴏ")
+if escolha == 1:
+    print("ʙᴇʟᴇᴢᴀ ᴇɴᴛᴀ̃ᴏ")
     
-    if escolha == 2:
-        print("ɴᴀ̃ᴏ ᴢᴏᴀ ɴᴀ̃ᴏ ᴄᴀʀᴀ")
+if escolha == 2:
+    print("ɴᴀ̃ᴏ ᴢᴏᴀ ɴᴀ̃ᴏ ᴄᴀʀᴀ")
 
 print("...")
 time.sleep(2)

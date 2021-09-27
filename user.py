@@ -1,20 +1,20 @@
-import Armas
+from Armas import Arco,Espada
 
 class user:
-    nome = ""
-    classe = 0
-    espada = arco = flecha = 0
-    vida = atk = defesa = energia = 0
-    danoArma = speedArma = 0
-    ArmaInicial = 0
-
     
-    def criacao(self, classe, vida, atk , defesa, energia, ArmaInicial):
-         self.classe = classe
-         self.vida = vida
-         self.atk = atk
-         self.defesa = defesa
-         self.energia = energia
-         self.ArmaInicial = ArmaInicial
-         self.ArmaInicial.danoArma = ArmaInicial.danoArma
-         self.ArmaInicial.speedArma = ArmaInicial.speedArma
+    def __init__(self, classe, vida, atk , defesa, energia, ArmaInicial):
+        ArmaInicial = Espada(2,1)
+        self.classe = classe
+        self.vida = vida
+        self.atk = atk
+        self.defesa = defesa
+        self.energia = energia
+        
+        if classe == 1:
+            self.ArmaInicial = Espada(2,1)
+        elif classe == 2:
+            self.ArmaInicial = Arco(2,1)
+    
+        self.danoArma = ArmaInicial.dano
+        self.speedArma = ArmaInicial.speed
+
