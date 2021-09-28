@@ -1,13 +1,59 @@
+from threading import main_thread
 import time
 import random
 import datetime
 import pygame
 import pyautogui
 import keyboard
-import os
+import os, sys
 import User, Armas, Menus
 from Armas import Arco,Espada
 from User import user
+from time import sleep
+from os import system
+
+keyboard.on_press_key("esc", lambda _:pause(escolha,opcao))
+
+def pause(escolha,opcao):
+    
+    while(escolha == 0):
+        os.system("cls")
+        
+        if opcao == 1:
+            Menus.MenuGeral.menuesc1()
+
+        elif opcao == 2:
+            Menus.MenuGeral.menuesc2()
+
+        elif opcao == 3:
+            Menus.MenuGeral.menuesc3()
+
+        elif opcao == 4:
+            Menus.MenuGeral.menuesc4()
+            
+        elif opcao == 0:
+            opcao = 4
+            Menus.MenuGeral.menuesc4()
+        
+        elif opcao == 5:
+            opcao == 1
+            Menus.MenuGeral.menuesc1()
+        
+        opcao, escolha = opcoesmenu(escolha,opcao)
+        
+        if escolha==1:
+            break
+            
+        elif escolha==2:
+            pass
+            
+        elif escolha==3:
+            sys.stdout.flush()
+            os.execv(sys.argv[0], sys.argv)
+            
+        elif escolha==4:    
+            exit()
+    
 
 def musiquinha(musica):
     if musica:
@@ -106,7 +152,7 @@ if inicio == 0:
     print("    /        `.  / /       `.~-^=-=~=^=.-'      '-._ `._""")
     tempo()
     
-    print("Para manipular o menu, utilize as setinhas e a tecla espaço do seu teclado")
+    
 while(escolha != 1) or (escolha != 4):
     if inicio != 0:
         print("""
@@ -124,6 +170,8 @@ while(escolha != 1) or (escolha != 4):
           /\  .-   `. \/     \ /==~=-=~=-=-;.  _/ \ -. `_/   \\
          /  `-.__ ^   / .-'.--\ =-=~_=-=~=^/  _ `--./ .-'  `-
         /        `.  / /       `.~-^=-=~=^=.-'      '-._ `._""")
+        print("Para manipular o menu, utilize as setinhas e a tecla espaço do seu teclado")
+        print("A qualquer momento do jogo, aperte ESC para abrir o menu")
     
     if opcao == 1:
         menuInicial.menu1()
@@ -167,7 +215,7 @@ while(escolha != 1) or (escolha != 4):
         input("Pressione enter para voltar ao menu")
         opcao, escolha = voltarmenu(0,3)
         
-    if escolha == 4:
+    elif escolha == 4:
         exit()
     
     inicio=1
@@ -225,11 +273,11 @@ elif escolha == 2:
     user = user(user.nome,2,80,40,10,100,Arco(2,1))
 
 escolha = 0
+time.sleep(1)
 while(escolha==0): 
 
     if user.classe == 1:
         print(f"Clóvis: ᴘᴏᴅᴇ ᴄʀᴇʀ, ᴛᴏ ᴍᴇ ʟᴇᴍʙʀᴀɴᴅᴏ... sᴇ ᴇᴜ ɴᴀ̃ᴏ ᴍᴇ ᴇɴɢᴀɴᴏ sᴜᴀ ᴇsᴘᴀᴅᴀ ᴇʀᴀ ᴀ ᴄᴏᴍ {user.danoArma} ᴅᴇ ᴅᴀɴᴏ ᴇ {user.speedArma} ᴅᴇ ᴠᴇʟᴏᴄɪᴅᴀᴅᴇ ᴅᴇ ᴀᴛᴀǫᴜᴇ ɴᴇ́?")
-        
         if opcao == 1:
             menuInicial.menucvs1()
         
@@ -247,6 +295,7 @@ while(escolha==0):
         opcao, escolha = opcoesmenu(escolha, opcao)
         
     elif user.classe == 2:
+
         print(f"Clóvis: ᴘᴏᴅᴇ ᴄʀᴇʀ, ᴛᴏ ᴍᴇ ʟᴇᴍʙʀᴀɴᴅᴏ... sᴇ ᴇᴜ ɴᴀ̃ᴏ ᴍᴇ ᴇɴɢᴀɴᴏ sᴇᴜ ᴀʀᴄᴏ ᴇʀᴀ ᴏ ᴄᴏᴍ {user.danoArma} ᴅᴇ ᴅᴀɴᴏ ᴇ {user.speedArma} ᴅᴇ ᴠᴇʟᴏᴄɪᴅᴀᴅᴇ ᴅᴇ ᴀᴛᴀǫᴜᴇ ɴᴇ́?")
 
         if opcao == 1:
@@ -271,7 +320,28 @@ if escolha == 1:
 if escolha == 2:
     print("ɴᴀ̃ᴏ ᴢᴏᴀ ɴᴀ̃ᴏ ᴄᴀʀᴀ")
 
-print("...")
-time.sleep(2)
+for char in "....":
+    sleep(1)
+    print(char,end="",flush=True)
+
+os.system("cls")
 print("Clóvis: ᴠᴀᴍᴏ ɴᴇssᴀ, ᴊᴀ́ ᴛᴏ ʀᴜɪᴍ ᴊᴀ́")
-    
+
+print("""
+      .　　　　　　　　　　 ✦ 　　　　   　 　　　˚　　　　　　　　　　　　　　　　　　　　   　　　　　　　
+      .　　　　　　　　　　　 　　　. 　　 　　　　　　　 ✦ 　　　　　　　　　　 　 ‍ ‍ ‍ ‍
+      　　　　 　　　　　　　　　　　　,　　   　 .　　　　　　　　　　　　　.　　　ﾟ　  　　　.　　　　　
+      ✦ 　　　　　　,　　　　　　　.　　　　　　    　　　　 　　　　　　　　　　　　　　　　　　  . 
+      　　　　　　　　　　　　　　　　　　    　      　　　　　        　　　　　　　　　　　　　. 　　　　　　　　.　
+     .　　　　　　       　   　　　　 　　　　　　　　　　　　　　　　       　   　　　　　　　　　　　　　　　　       　   
+     ✦ 　   　　　,　　　　　　　　　　　  　　　　 　　,　　　 ‍ ‍ ‍ ‍ 　 　　　　　　　　　　　　.　　　　　 　　
+     .　　　　　　　　　　　　　 　           　　　　　　　　　　　　　　　　　　　. ˚　　　 　   . ,　　　　　　　　
+            　    　　　　　　　　　　　　　. .　　　  　　    ✦　 
+    ✦　　　　 　　　　　.　　　　　　　　　　　　　.　　　　　　　　　　　　　　　 　　   　　　　　 ✦
+    　　　　　　　         　        　　　　 　　 　　　　　　　 　　　　　.　　　　　　　　　　　　　　　　　　.　　
+        　　. 　 　　　　　.　　　　 　　　　　   　　　　　.　　　　　　　　　　　.　　　　　　　　　　  
+    　 　˚　　 . ✦ ✦　　　　　　　　　　　　　　　　　　　ﾟ　　　　　.　　　　　　　　　　　　　　　.
+    　　 　  ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ,　 　　　　　　　　　　　　　　* .　　　　　 　　　　　　　　　　　　　　.　　　　　                                
+    ✦ 　　　　   　 　　　˚　　　　　　　　　　　　　　*　　　　　　   　　　　　　　　　　　　　　　.　　　　　　　　　　　　　　 ✦                                                                      
+      """)
+

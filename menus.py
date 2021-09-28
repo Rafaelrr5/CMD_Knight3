@@ -51,5 +51,39 @@ class MenusIni:
             1 - Isso aí, Clóvis 
             2 - Não, cara... kk <-""")
         
-class a:
-    pass
+class MenuGeral:
+    def menuesc1():
+        print("Bem vindo ao menu de PAUSE, o que deseja fazer?")
+        print("""
+              1 - Voltar ao jogo <-
+              2 - Salvar o jogo
+              3 - Voltar ao menu inicial
+              4 - Sair de jogo
+              """)
+        
+    def menuesc2():
+        print("Bem vindo ao menu de PAUSE, o que deseja fazer?")
+        print("""
+              1 - Voltar ao jogo 
+              2 - Salvar o jogo <-
+              3 - Voltar ao menu inicial
+              4 - Sair de jogo
+              """)
+        
+    def menuesc3():
+        print("Bem vindo ao menu de PAUSE, o que deseja fazer?")
+        print("""
+              1 - Voltar ao jogo 
+              2 - Salvar o jogo
+              3 - Voltar ao menu inicial <-
+              4 - Sair de jogo 
+              """)
+        
+    def menuesc4():
+        print("Bem vindo ao menu de PAUSE, o que deseja fazer?")
+        print("""
+              1 - Voltar ao jogo 
+              2 - Salvar o jogo
+              3 - Voltar ao menu inicial 
+              4 - Sair de jogo <-
+              """)
