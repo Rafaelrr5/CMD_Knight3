@@ -1,4 +1,7 @@
-class MenusIni:
+
+
+class MenuIni:
+    
     def menu1():
         print("""
     1 - Iniciar jogo <-
@@ -52,6 +55,7 @@ class MenusIni:
             2 - Não, cara... kk <-""")
         
 class MenuGeral:
+
     def menuesc1():
         print("Bem vindo ao menu de PAUSE, o que deseja fazer?")
         print("""

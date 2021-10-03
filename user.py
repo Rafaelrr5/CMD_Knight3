@@ -1,9 +1,9 @@
-from Armas import Arco,Espada
+import Armas
 
 class user:
             
     def __init__(self, nome, classe, vida, atk , defesa, energia, ArmaInicial):
-        ArmaInicial = Espada(2,1)
+        ArmaInicial = Armas.Espada(2,1)
         self.nome = nome
         self.classe = classe
         self.vida = vida
@@ -12,9 +12,9 @@ class user:
         self.energia = energia
         
         if classe == 1:
-            self.ArmaInicial = Espada(2,1)
+            self.ArmaInicial = Armas.Espada(2,1)
         elif classe == 2:
-            self.ArmaInicial = Arco(2,1)
+            self.ArmaInicial = Armas.Arco(2,1)
     
         self.danoArma = ArmaInicial.dano
         self.speedArma = ArmaInicial.speed

@@ -1,43 +1,34 @@
-from threading import main_thread
-import time
-import random
-import datetime
-import pygame
-import pyautogui
-import keyboard
-import os, sys
-import User, Armas, Menus
-from Armas import Arco,Espada
-from User import user
-from time import sleep
-from os import system
+import random, datetime, time
+import pygame, os, sys, keyboard, pyautogui
+import User, Armas, Monstros
+from MenusJogo import MenuIni, MenuGeral
 
-keyboard.on_press_key("esc", lambda _:pause(escolha,opcao))
-
-def pause(escolha,opcao):
+escolha = 0
+keyboard.on_press_key("esc", lambda _:pausemenu(escolha,opcao))
+                               
+def pausemenu(escolha,opcao):
     
     while(escolha == 0):
-        os.system("cls")
         
         if opcao == 1:
-            Menus.MenuGeral.menuesc1()
+            MenuGeral.menuesc1()
 
         elif opcao == 2:
-            Menus.MenuGeral.menuesc2()
+            MenuGeral.menuesc2()
 
         elif opcao == 3:
-            Menus.MenuGeral.menuesc3()
+            MenuGeral.menuesc3()
 
         elif opcao == 4:
-            Menus.MenuGeral.menuesc4()
+            MenuGeral.menuesc4()
             
         elif opcao == 0:
             opcao = 4
-            Menus.MenuGeral.menuesc4()
+            MenuGeral.menuesc4()
         
         elif opcao == 5:
             opcao == 1
-            Menus.MenuGeral.menuesc1()
+            MenuGeral.menuesc1()
         
         opcao, escolha = opcoesmenu(escolha,opcao)
         
@@ -53,7 +44,6 @@ def pause(escolha,opcao):
             
         elif escolha==4:    
             exit()
-    
 
 def musiquinha(musica):
     if musica:
@@ -100,10 +90,10 @@ volume = 0.8
 pygame.mixer.music.set_volume(volume)
 escolha = 0
 opcao = 1
-menuInicial = Menus.MenusIni
 musica = True
+user = User.user
 
-carregamento =  10 #23
+carregamento =  0 #23
 
 for i in range(1, carregamento + 1):
     time.sleep(0.1) 
@@ -172,23 +162,23 @@ while(escolha != 1) or (escolha != 4):
         /        `.  / /       `.~-^=-=~=^=.-'      '-._ `._""")
         print("Para manipular o menu, utilize as setinhas e a tecla espaço do seu teclado")
         print("A qualquer momento do jogo, aperte ESC para abrir o menu")
-    
+        
     if opcao == 1:
-        menuInicial.menu1()
+        MenuIni.menu1()
     elif opcao == 2:
-        menuInicial.menu2()
+        MenuIni.menu2()
     elif opcao == 3:
-        menuInicial.menu3()
+        MenuIni.menu3()
     elif opcao == 4:
-        menuInicial.menu4()
+        MenuIni.menu4()
     
     if opcao == 0:
         opcao = 4
-        menuInicial.menu4()
+        MenuIni.menu4()
         
     if opcao == 5:
         opcao = 1
-        menuInicial.menu1()
+        MenuIni.menu1()
 
     opcao, escolha = opcoesmenu(escolha, opcao)
     
@@ -248,29 +238,29 @@ print("Clóvis: ᴍᴇᴜ ᴅᴇᴜs ᴄʀɪᴀ ᴇᴜ ʙᴇʙɪ ᴛᴀɴᴛᴏ 
 user.nome = input("Digite seu nome: ") 
 escolha = 0
 while((escolha == 0)): 
-    
+        
     print(f"Clóvis: Isso aí memo, {user.nome}, ᴇ ᴠᴏᴄᴇ̂ ᴇ́...?")
     if opcao == 1:
-        menuInicial.menuclas1()
+        MenuIni.menuclas1()
         
     elif opcao == 2:
-        menuInicial.menuclas2()
+        MenuIni.menuclas2()
     
     if opcao < 1:
         opcao = 2
-        menuInicial.menuclas1()
+        MenuIni.menuclas1()
         
     if opcao > 2:
         opcao = 1
-        menuInicial.menuclas2()
-    
+        MenuIni.menuclas2()
+        
     opcao, escolha = opcoesmenu(escolha, opcao)
 
 if escolha == 1:
-    user = user(user.nome,1,100,25,25,80,Espada(2,1))
+    user = user(user.nome,1,100,25,25,80,Armas.Espada(2,1))
         
 elif escolha == 2:
-    user = user(user.nome,2,80,40,10,100,Arco(2,1))
+    user = user(user.nome,2,80,40,10,100,Armas.Arco(2,1)) 
 
 escolha = 0
 time.sleep(1)
@@ -279,18 +269,18 @@ while(escolha==0):
     if user.classe == 1:
         print(f"Clóvis: ᴘᴏᴅᴇ ᴄʀᴇʀ, ᴛᴏ ᴍᴇ ʟᴇᴍʙʀᴀɴᴅᴏ... sᴇ ᴇᴜ ɴᴀ̃ᴏ ᴍᴇ ᴇɴɢᴀɴᴏ sᴜᴀ ᴇsᴘᴀᴅᴀ ᴇʀᴀ ᴀ ᴄᴏᴍ {user.danoArma} ᴅᴇ ᴅᴀɴᴏ ᴇ {user.speedArma} ᴅᴇ ᴠᴇʟᴏᴄɪᴅᴀᴅᴇ ᴅᴇ ᴀᴛᴀǫᴜᴇ ɴᴇ́?")
         if opcao == 1:
-            menuInicial.menucvs1()
+            MenuIni.menucvs1()
         
         elif opcao == 2:
-            menuInicial.menucvs2()
+            MenuIni.menucvs2()
         
         if opcao < 1:
             opcao = 2
-            menuInicial.menucvs1()
+            MenuIni.menucvs1()
         
         if opcao > 2:
             opcao = 1
-            menuInicial.menucvs2()
+            MenuIni.menucvs2()
         
         opcao, escolha = opcoesmenu(escolha, opcao)
         
@@ -299,18 +289,18 @@ while(escolha==0):
         print(f"Clóvis: ᴘᴏᴅᴇ ᴄʀᴇʀ, ᴛᴏ ᴍᴇ ʟᴇᴍʙʀᴀɴᴅᴏ... sᴇ ᴇᴜ ɴᴀ̃ᴏ ᴍᴇ ᴇɴɢᴀɴᴏ sᴇᴜ ᴀʀᴄᴏ ᴇʀᴀ ᴏ ᴄᴏᴍ {user.danoArma} ᴅᴇ ᴅᴀɴᴏ ᴇ {user.speedArma} ᴅᴇ ᴠᴇʟᴏᴄɪᴅᴀᴅᴇ ᴅᴇ ᴀᴛᴀǫᴜᴇ ɴᴇ́?")
 
         if opcao == 1:
-            menuInicial.menucvs1()
+            MenuIni.menucvs1()
         
         elif opcao == 2:
-            menuInicial.menucvs2()
+            MenuIni.menucvs2()
         
         if opcao < 1:
             opcao = 2
-            menuInicial.menucvs1()
+            MenuIni.menucvs1()
         
         if opcao > 2:
             opcao = 1
-            menuInicial.menucvs2()
+            MenuIni.menucvs2()
         
         opcao, escolha = opcoesmenu(escolha, opcao)
 
@@ -321,7 +311,7 @@ if escolha == 2:
     print("ɴᴀ̃ᴏ ᴢᴏᴀ ɴᴀ̃ᴏ ᴄᴀʀᴀ")
 
 for char in "....":
-    sleep(1)
+    time.sleep(.5)
     print(char,end="",flush=True)
 
 os.system("cls")
@@ -345,3 +335,92 @@ print("""
     ✦ 　　　　   　 　　　˚　　　　　　　　　　　　　　*　　　　　　   　　　　　　　　　　　　　　　.　　　　　　　　　　　　　　 ✦                                                                      
       """)
 
+for char in "O céu da noite está estrelado, você olha para a imensidão espacial mas sai da distração com um barulho na trilha da floresta":
+    time.sleep(.1)
+    print(char, end="", flush= True)
+    if keyboard.is_pressed("space"): 
+        break
+    
+time.sleep(.5)
+#https://pt.piliapp.com/cool-text/small-caps/
+print("Clóvis: ᴠᴏᴄᴇ̂ ᴏᴜᴠɪᴜ ɪssᴏ?")
+
+print("\nUm orc ladrão aparece no seu caminho")
+
+class BatalhaTut:
+    
+    orc = Monstros.orc(50,5,1)
+    vidauser = user.vida
+    vidamonstro = orc.vida
+    danomonstro = orc.dano
+    danouser = user.atk
+    
+    def menuBatt1():
+        print(f"""
+            PV atual: {BatalhaTut.vidauser}/{user.vida} || Orc: {BatalhaTut.vidamonstro}/{BatalhaTut.orc.vida}
+            1 - Atacar <-
+            2 - Tomar poção de vida
+            3 - Fugir
+              """)
+
+    def menuBatt2():
+        print(f"""
+            PV atual: {BatalhaTut.vidauser}/{user.vida} || Orc: {BatalhaTut.vidamonstro}/{BatalhaTut.orc.vida}
+            1 - Atacar
+            2 - Tomar poção de vida <-
+            3 - Fugir
+              """)
+        
+    def menuBatt3():
+        print(f"""
+            PV atual: {BatalhaTut.vidauser}/{user.vida} || Orc: {BatalhaTut.vidamonstro}/{BatalhaTut.orc.vida}
+            1 - Atacar
+            2 - Tomar poção de vida
+            3 - Fugir <-
+              """)
+    
+    def atacar(danouser,vidauser,danomonstro,vidamonstro):
+        danom = random.randint((danomonstro-5), danomonstro)
+        danou = random.randint((danouser-3), danouser)
+        vidauser = vidauser - danom
+        vidamonstro = vidamonstro - danou
+        print(f"Você atingiu o monstro em cheio! Deu {danou} de dano! Mas não foi de graça, ele te deu {danom} de dano!")
+        time.sleep(1.5)
+        return vidauser, vidamonstro
+        
+    def menuprin(opcao,escolha):
+        while escolha==0:
+            if opcao == 1:
+                BatalhaTut.menuBatt1()
+                
+            elif opcao == 2:
+                BatalhaTut.menuBatt2()
+                
+            elif opcao == 3:
+                BatalhaTut.menuBatt3()
+                
+            opcao,escolha = opcoesmenu(escolha,opcao)
+            
+            if escolha == 1:
+                BatalhaTut.vidauser, BatalhaTut.vidamonstro = BatalhaTut.atacar(user.atk, BatalhaTut.vidauser, BatalhaTut.orc.dano, BatalhaTut.vidamonstro)
+            
+            elif escolha == 2:
+                print("Impossível pegar uma poção agora!")
+                time.sleep(2)
+            
+            elif escolha == 3:    
+                print("Fugir agora é impossível, preciso ir com Clóvis")
+                time.sleep(2)
+                
+while BatalhaTut.vidauser > 0 or BatalhaTut.vidamonstro > 0:
+    escolha = 0
+    BatalhaTut.menuprin(opcao,escolha)
+
+    if BatalhaTut.vidauser <= 0:
+        print("morreu otario")
+        break
+        
+    elif BatalhaTut.vidamonstro <= 0:
+        print("Você matou o orc!")
+        print("cabo o jogo (UᴗU)")
+        break
