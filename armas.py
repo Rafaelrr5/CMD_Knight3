@@ -1,5 +1,6 @@
 class Espada:
 
+
     def __init__(self,dano,speed):
         self.dano = dano
         self.speed = speed

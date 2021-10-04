@@ -34,6 +34,24 @@ class MenuIni:
     4 - Sair do jogo <-
             """)
         
+    def menumus1():
+        print("""
+              1 - Ligar/Desligar música <-
+              2 - Alterar volume 
+              3 - Voltar""")
+        
+    def menumus2():
+        print("""
+              1 - Ligar/Desligar música 
+              2 - Alterar volume <-
+              3 - Voltar""")
+    
+    def menumus3():
+        print("""
+              1 - Ligar/Desligar música 
+              2 - Alterar volume 
+              3 - Voltar <-""")
+        
     def menuclas1():
         print("""
               1 - Guerreiro <-

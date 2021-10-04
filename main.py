@@ -1,7 +1,8 @@
 import random, datetime, time
 import pygame, os, sys, keyboard, pyautogui
 import User, Armas, Monstros
-from MenusJogo import MenuIni, MenuGeral
+from MenusJogo import *
+from Ascii import ascii
 
 escolha = 0
 keyboard.on_press_key("esc", lambda _:pausemenu(escolha,opcao))
@@ -80,13 +81,24 @@ def voltarmenu(escolha, opcao):
     opcao, escolha = opcoesmenu(escolha, opcao)
     return opcao, escolha
 
+def menuprincipal():
+    print(f"""Bem vindo de volta, {user.nome}!
+          Atualmente, esses são seus atributos
+          Classe: {user.classe} (1 - Guerreiro | 2 - Arqueiro)
+          Nível: {user.nvl}
+          Vida: {user.vida}
+          AtaqueTotal: {user.atk}
+          Pts de Armadura: {user.defesa}
+          Energia: {user.energia}
+          Arma: {user.ArmaInicial}""")
+
 # pygame.mixer.music.stop pygame.mixer.music.pause pygame.mixer.music.unpause
 
 pygame.init()
-path = os.path.join(os.path.dirname(__file__), 'musica.wav')
+path = os.path.join('bin/musicacmdknight.wav')
 pygame.mixer.music.load(path)
 pygame.event.wait()
-volume = 0.8
+volume = 0.1
 pygame.mixer.music.set_volume(volume)
 escolha = 0
 opcao = 1
@@ -186,9 +198,52 @@ while(escolha != 1) or (escolha != 4):
         break
         
     elif escolha == 2:
-        input("Aperte enter")
-        musica = musiquinha(musica)
-        opcao, escolha = voltarmenu(0,2)
+        
+        escolha = 0
+        opcao = 1
+        
+        while escolha==0:
+            
+            if opcao == 1:
+                MenuIni.menumus1()
+            
+            elif opcao == 2:
+                MenuIni.menumus2()
+                
+            elif opcao ==3:
+                MenuIni.menumus3()
+                
+            elif opcao > 3:
+                opcao = 1
+                MenuIni.menumus1()
+                
+            elif opcao < 1:
+                opcao = 3
+                MenuIni.menumus3()
+                
+            opcao, escolha = opcoesmenu(escolha, opcao)
+                
+            if escolha == 1:
+                musica = musiquinha(musica)
+                opcao, escolha = voltarmenu(0,2)
+            
+            elif escolha == 2:
+                
+                print("Volume atual: ",volume)
+                volume = (input("Digite o valor do volume desejado (0.1 e afins são permitidos):"))
+                if type(volume) == str:
+                    try:
+                        float(volume)
+                    except:
+                        print("Valor inválido")
+                        time.sleep(1)
+                        volume = 0.1
+                pygame.mixer.music.set_volume(float(volume))
+                opcao, escolha = voltarmenu(0,2)
+                
+            elif escolha == 3:
+                opcao, escolha = voltarmenu(0,2)
+                break
         
     elif escolha == 3:
         print("""_________         _________ 
@@ -234,12 +289,12 @@ print("""                           (   ))
 time.sleep(1)
 
 #https://pt.piliapp.com/cool-text/small-caps/
-print("Clóvis: ᴍᴇᴜ ᴅᴇᴜs ᴄʀɪᴀ ᴇᴜ ʙᴇʙɪ ᴛᴀɴᴛᴏ ǫᴜᴇ ᴇᴜ ɴᴇᴍ ʟᴇᴍʙʀᴏ ᴏ sᴇᴜ ɴᴏᴍᴇ, ᴀᴊᴜᴅᴀ ᴀɪ́...")
+print("Clóvis: Meu deus cria eu bebi tanto que eu nem lembro seu nome, ajuda aí...")
 user.nome = input("Digite seu nome: ") 
 escolha = 0
 while((escolha == 0)): 
         
-    print(f"Clóvis: Isso aí memo, {user.nome}, ᴇ ᴠᴏᴄᴇ̂ ᴇ́...?")
+    print(f"Clóvis: Isso aí memo, {user.nome}, e você é...?")
     if opcao == 1:
         MenuIni.menuclas1()
         
@@ -257,10 +312,10 @@ while((escolha == 0)):
     opcao, escolha = opcoesmenu(escolha, opcao)
 
 if escolha == 1:
-    user = user(user.nome,1,100,25,25,80,Armas.Espada(2,1))
+    user = user(user.nome,1,1,100,25,25,80,Armas.Espada(2,1))
         
 elif escolha == 2:
-    user = user(user.nome,2,80,40,10,100,Armas.Arco(2,1)) 
+    user = user(user.nome,2,1,80,40,10,100,Armas.Arco(2,1)) 
 
 escolha = 0
 time.sleep(1)
@@ -305,35 +360,35 @@ while(escolha==0):
         opcao, escolha = opcoesmenu(escolha, opcao)
 
 if escolha == 1:
-    print("ʙᴇʟᴇᴢᴀ ᴇɴᴛᴀ̃ᴏ")
+    print("Beleza então")
     
 if escolha == 2:
-    print("ɴᴀ̃ᴏ ᴢᴏᴀ ɴᴀ̃ᴏ ᴄᴀʀᴀ")
+    print("Não zoa não cara")
 
 for char in "....":
     time.sleep(.5)
     print(char,end="",flush=True)
 
 os.system("cls")
-print("Clóvis: ᴠᴀᴍᴏ ɴᴇssᴀ, ᴊᴀ́ ᴛᴏ ʀᴜɪᴍ ᴊᴀ́")
+print("Clóvis: Vamo nessa, to ruim já")
 
-print("""
-      .　　　　　　　　　　 ✦ 　　　　   　 　　　˚　　　　　　　　　　　　　　　　　　　　   　　　　　　　
-      .　　　　　　　　　　　 　　　. 　　 　　　　　　　 ✦ 　　　　　　　　　　 　 ‍ ‍ ‍ ‍
-      　　　　 　　　　　　　　　　　　,　　   　 .　　　　　　　　　　　　　.　　　ﾟ　  　　　.　　　　　
-      ✦ 　　　　　　,　　　　　　　.　　　　　　    　　　　 　　　　　　　　　　　　　　　　　　  . 
-      　　　　　　　　　　　　　　　　　　    　      　　　　　        　　　　　　　　　　　　　. 　　　　　　　　.　
-     .　　　　　　       　   　　　　 　　　　　　　　　　　　　　　　       　   　　　　　　　　　　　　　　　　       　   
-     ✦ 　   　　　,　　　　　　　　　　　  　　　　 　　,　　　 ‍ ‍ ‍ ‍ 　 　　　　　　　　　　　　.　　　　　 　　
-     .　　　　　　　　　　　　　 　           　　　　　　　　　　　　　　　　　　　. ˚　　　 　   . ,　　　　　　　　
-            　    　　　　　　　　　　　　　. .　　　  　　    ✦　 
-    ✦　　　　 　　　　　.　　　　　　　　　　　　　.　　　　　　　　　　　　　　　 　　   　　　　　 ✦
-    　　　　　　　         　        　　　　 　　 　　　　　　　 　　　　　.　　　　　　　　　　　　　　　　　　.　　
-        　　. 　 　　　　　.　　　　 　　　　　   　　　　　.　　　　　　　　　　　.　　　　　　　　　　  
-    　 　˚　　 . ✦ ✦　　　　　　　　　　　　　　　　　　　ﾟ　　　　　.　　　　　　　　　　　　　　　.
-    　　 　  ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ,　 　　　　　　　　　　　　　　* .　　　　　 　　　　　　　　　　　　　　.　　　　　                                
-    ✦ 　　　　   　 　　　˚　　　　　　　　　　　　　　*　　　　　　   　　　　　　　　　　　　　　　.　　　　　　　　　　　　　　 ✦                                                                      
-      """)
+print(""".         _  .          .          .    +     .          .          .      .
+        .(_)          .            .            .            .       :
+        .   .      .    .     .     .    .      .   .      . .  .  -+-        .
+          .           .   .        .           .          /         :  .
+    . .        .  .      /.   .      .    .     .     .  / .      . ' .
+        .  +       .    /     .          .          .   /      .
+       .            .  /         .            .        *   .         .     .
+      .   .      .    *     .     .    .      .   .       .  .
+          .           .           .           .           .         +  .
+  . .        .  .       .   .      .    .     .     .    .      .   .
+
+ .   +      .          ___/\_._/~~\_...__/\__.._._/~\        .         .   .
+       .          _.--'                              `--./\          .   .
+           /~~\/~\                                         `-/~\_            .
+ .      .-'                                                      `-/\_
+  _/\.-'                                                          __/~\/\-.__
+.'                                                                           `""")
 
 for char in "O céu da noite está estrelado, você olha para a imensidão espacial mas sai da distração com um barulho na trilha da floresta":
     time.sleep(.1)
@@ -343,7 +398,7 @@ for char in "O céu da noite está estrelado, você olha para a imensidão espac
     
 time.sleep(.5)
 #https://pt.piliapp.com/cool-text/small-caps/
-print("Clóvis: ᴠᴏᴄᴇ̂ ᴏᴜᴠɪᴜ ɪssᴏ?")
+print("Clóvis: Você ouviu isso?")
 
 print("\nUm orc ladrão aparece no seu caminho")
 
@@ -424,3 +479,14 @@ while BatalhaTut.vidauser > 0 or BatalhaTut.vidamonstro > 0:
         print("Você matou o orc!")
         print("cabo o jogo (UᴗU)")
         break
+
+#https://pt.piliapp.com/cool-text/small-caps/
+print(f"""Clóvis: ᴄᴀʀᴀᴍʙᴀ {user.nome}, ǫᴜᴀɴᴛᴏ ᴛᴇᴍᴘᴏ ᴀ ɢᴇɴᴛᴇ ɴᴀ̃ᴏ ᴠᴇ̂ ᴜᴍ ᴅᴇssᴇs... ᴘʀᴀ ᴍɪᴍ ᴇssᴇs ᴏʀᴄs
+      ᴊᴀ́ ᴛɪɴʜᴀᴍ sɪᴅᴏ ᴇxᴘᴜʟsᴏs ᴅᴀs ʀᴇᴅᴏɴᴅᴇᴢᴀs ᴅᴇsᴅᴇ ᴀ ɴᴏssᴀ ᴜ́ʟᴛɪᴍᴀ ɢʀᴀɴᴅᴇ ʟᴜᴛᴀ ʜᴇʀᴏɪᴄᴀ""")
+
+print(f"{user.nome}: Também achei estranho... Melhor reportarmos isso ao rei")
+
+print("*Reino de *")
+print(ascii.reino)
+
+menuprincipal()

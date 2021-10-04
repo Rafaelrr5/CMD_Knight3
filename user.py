@@ -2,7 +2,7 @@ import Armas
 
 class user:
             
-    def __init__(self, nome, classe, vida, atk , defesa, energia, ArmaInicial):
+    def __init__(self, nome,nvl, classe, vida, atk , defesa, energia, ArmaInicial):
         ArmaInicial = Armas.Espada(2,1)
         self.nome = nome
         self.classe = classe
@@ -10,6 +10,7 @@ class user:
         self.atk = atk
         self.defesa = defesa
         self.energia = energia
+        self.nvl = nvl
         
         if classe == 1:
             self.ArmaInicial = Armas.Espada(2,1)
